@@ -1,0 +1,42 @@
+#Copy the PostXML.py and PostXML.cfg files to the same directory as your script.
+#Edit the PostXML.cfg file to match your SAM configuration - you can use hostnames or IPs.
+
+#To import, do:
+
+from PostXML import PostXML
+
+my_xml_string = '''
+<ping xmlns="xmlapi_1.0"/>
+'''
+
+#To use, instantiate a new object:
+
+MyXMLPoster = PostXML()
+
+#This object can be re-used to send multiple requests, if desired.
+
+#To send a request, use the xml_request method:
+
+MyXMLPoster.xml_request(my_xml_string)
+
+
+#This call returns a boolean, so you can test and call at the same time:
+
+if MyXMLPoster.xml_request(my_xml_string):
+        #Parse results
+        print "Result was good!"
+else:
+        #//Do something if the request failed for some reason.
+        print "Something bad happened."
+
+#Two main attributes are available from the request:
+MyXMLPoster.status
+MyXMLPoster.response
+
+#status should be 200 if everything was ok, else something went wrong (check Http error codes for more details)
+#response wholes the entire SOAP response as sent back by SAM. Use this for parsing.
+
+#If status !=200 or xml_request returns false for whatever reason, check this variable:
+MyXMLPoster.error_string
+
+#Cause I wasn't fancy enough to create custom errors

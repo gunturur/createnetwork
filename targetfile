@@ -1,0 +1,61 @@
+<domain type="kvm">
+   <name>test1</name>
+   
+   <memory>4194304</memory>
+   <currentMemory>4194304</currentMemory>
+   <cpu match="minimum" mode="custom">
+      <model>SandyBridge</model>
+      <vendor>Intel</vendor>
+      <feature name="x2apic" policy="require" />
+   </cpu>
+   <vcpu current="8">8</vcpu>
+   <os>
+      <type arch="x86_64" machine="pc">hvm</type>
+      <smbios mode="sysinfo" />
+   </os>
+   <sysinfo type="smbios">
+      <system>
+         <entry name="product">TIMOS:address=135.121.47.129/23@active static-route=128.0.0.0/1@135.121.46.1 license-file=ftp://admin1:admin1@138.120.187.9/nodeImages/licenses/timos.none.txt</entry>
+         
+      </system>
+   </sysinfo>
+   <devices>
+      <disk device="disk" type="file">
+         <driver cache="none" name="qemu" type="qcow2" />
+         <source file="/var/lib/libvirt/images/sr14R4_1.qcow2" />
+         
+         <target bus="virtio" dev="hda" />
+      </disk>
+      <interface type="bridge">
+         <source bridge="virbr0" />
+         <model type="virtio" />
+      </interface>
+      <interface type="bridge">
+         <source bridge="bridgeunset" />
+         <model type="virtio" />
+      </interface>
+      <interface type="bridge">
+         <source bridge="bridgeunset" />
+         <model type="virtio" />
+      </interface>
+      <interface type="bridge">
+         <source bridge="bridgeunset" />
+         <model type="virtio" />
+      </interface>
+      <interface type="bridge">
+         <source bridge="bridgeunset" />
+         <model type="virtio" />
+      </interface>
+      <interface type="bridge">
+         <source bridge="bridgeunset" />
+         <model type="virtio" />
+      </interface>
+    <serial type="pty">
+      <target port="0" />
+    </serial>
+    <console type="pty">
+      <target port="0" type="serial" />
+    </console>
+   </devices>
+   <seclabel type="none" />
+</domain>
